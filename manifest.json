@@ -1,0 +1,9 @@
+{
+  "id": "epub-export-studio",
+  "name": "EPUB Export Studio",
+  "version": "0.1.0",
+  "minAppVersion": "1.5.0",
+  "description": "Export notes to EPUB e-books without Pandoc. Exporting needs no network.",
+  "author": "Quillfern (AI-assisted)",
+  "isDesktopOnly": true
+}

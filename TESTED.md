@@ -1,0 +1,20 @@
+# EPUB Export Studio 0.1.0: test record (public copy)
+
+Build tested (the files that will be attached to the 0.1.0 release):
+- main.js sha256 45cb684f0644349c3950f4d995934fee3d08501229504c4c3daf65dc1090358c
+- manifest.json sha256 be2b6ad75ba6da54319b0b1455573992a8260e0084d5eeb8a6f4df460149cbd1 (version 0.1.0)
+
+Automated checks (2026-10-04, on this source, with the Pro product id set): typecheck PASS, 19 tests in 5 files PASS (vitest), production build PASS.
+
+EPUB validation: sample books (free and Pro, with cover, footnotes, image, table) report 0 errors and 0 warnings in epubcheck 5.1.0.
+
+REAL OBSIDIAN RUN (2026-10-04, Obsidian 1.13.7 Linux, fresh vault, no other plugins, on the exact hashes above): PASS, no bugs found.
+- Plugin loads with no console errors; both commands register.
+- Free export (image, footnote, headings, table, callout) works; a free user running the folder export gets the "Pro feature" notice and no file.
+- With Pro switched on through settings data (not a real licence key): cover, metadata, folder compile (also with subfolders), custom CSS (remote @import and url() stripped). Missing cover gives a notice and still exports.
+- epubcheck 5.1.0 on 7 exported files: 0 fatals, 0 errors, 0 warnings.
+- An invalid licence key is rejected by Gumroad ("does not recognise this licence key") and the plugin stays free.
+- Network: the plugin contacted only api.gumroad.com, at the Verify click. No traffic during exports.
+Caveats: community plugins were enabled through the app API, not the button; Pro was forced, so Verify was tested only with an invalid key; the first Obsidian process died mid-run and steps were finished in a restarted one with the same vault.
+
+Not tested: a valid licence key against live Gumroad (first paying buyers are that test); e-readers and reading apps (Kindle, Kobo, Apple Books, Calibre); the native trust dialog; clicking the context-menu entry and ribbon icon (command path used); Windows, macOS; mobile (plugin is desktop-only); minAppVersion 1.5.0 (only 1.13.7 used); very large books; SVG/remote images.

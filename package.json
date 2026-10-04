@@ -1,0 +1,24 @@
+{
+  "name": "epub-export-studio",
+  "version": "0.1.0",
+  "description": "Export notes to EPUB e-books without Pandoc. No telemetry.",
+  "main": "main.js",
+  "scripts": {
+    "build": "tsc --noEmit && node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.24.0",
+    "obsidian": "^1.7.2",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "@xmldom/xmldom": "^0.8.10"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
+  }
+}
