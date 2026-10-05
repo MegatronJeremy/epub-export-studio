@@ -8,7 +8,7 @@ Export an Obsidian note to an `.epub` e-book without Pandoc. Free for single not
 
 ## Free version
 
-Run **Export current note to EPUB** from the command palette, the ribbon icon, or the file menu. The `.epub` is saved next to the note (an existing file is never overwritten; a number is added).
+Run **Export current note to EPUB** from the command palette, the ribbon icon, or by right-clicking a note (file explorer or editor) and choosing **Export to EPUB**. The `.epub` is saved next to the note (an existing file is never overwritten; a number is added).
 
 - EPUB 3 package with a navigation table of contents built from your headings (h1 to h3).
 - Headings, bold, italic, strike, highlight, inline code, links, bullet/numbered/task lists, tables, code blocks, quotes and callouts.
@@ -52,7 +52,7 @@ You do not have to buy anything to get an EPUB out of Obsidian. Other free commu
 ## Known limits (honest status)
 
 - Tested: automated tests (see TESTED.md) and the EPUB validator epubcheck 5.1.0 on sample books made by the code (free and Pro, re-run on version 0.1.2; no errors, no warnings).
-- **Tested in the real Obsidian app (1.13.7, Linux) on 2026-10-04 on version 0.1.0; versions 0.1.1 and 0.1.2 were not re-run in Obsidian, see TESTED.md. Not tested in e-readers or reading apps** (Kindle, Kobo, Apple Books, Calibre), nor on Windows, macOS or mobile. Passing the validator does not guarantee how every reader displays the book.
+- **Tested in the real Obsidian app (1.13.7, Linux) on 2026-10-04 on version 0.1.0; versions 0.1.1 and 0.1.2 were not re-run in Obsidian, see TESTED.md. Not tested in e-readers or reading apps** (Kindle, Kobo, Apple Books), nor on Windows, macOS or mobile. Passing the validator does not guarantee how every reader displays the book. Calibre 8.5.0 was checked on the two sample books only (see TESTED.md).
 - Math, Mermaid, embedded notes (`![[note]]`), PDFs and audio are not exported.
 - Page-level design (fonts, drop caps, etc.) is up to the reader app and your CSS; the default stylesheet is plain.
 - A valid licence key has not been verified against the live Gumroad service yet; the first buyers are that test.

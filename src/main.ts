@@ -82,8 +82,17 @@ export default class EpubExportStudio extends Plugin {
     });
     this.registerEvent(
       this.app.workspace.on("file-menu", (menu, f) => {
+        if (f instanceof TFile && f.extension === "md")
+          menu.addItem((i) => i.setTitle("Export to EPUB").setIcon("book-open").onClick(() => void this.exportNote(f)));
         if (f instanceof TFolder)
           menu.addItem((i) => i.setTitle("Export folder as one EPUB book (Pro)").setIcon("book-open").onClick(() => void this.exportFolder(f)));
+      }),
+    );
+    this.registerEvent(
+      this.app.workspace.on("editor-menu", (menu, _editor, view) => {
+        const f = view.file;
+        if (f && f.extension === "md")
+          menu.addItem((i) => i.setTitle("Export to EPUB").setIcon("book-open").onClick(() => void this.exportNote(f)));
       }),
     );
   }

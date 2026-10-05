@@ -33,3 +33,10 @@ Not tested: a valid licence key against live Gumroad (first paying buyers are th
 - Release build 0.1.2: `main.js` sha256 `e00c7b00f523cd60d7307d605f62ee43bde6bb4306c0ae7342d56a585f2d297c`; `manifest.json` sha256 `83fa4d7b4e156ba094819f465170d892793171ae6485439b13359b10ae38daa5`.
 - Known limits unchanged and not fixed here: math stays as readable source text, `![[note]]` embeds are not expanded (no raw syntax leaks).
 - Not done: the real-Obsidian run was on 0.1.0 and was not repeated on 0.1.1 or 0.1.2; not tested in e-readers or reading apps.
+
+## Reader check in Calibre (added 2026-10-05, no code change)
+- Tool: Calibre 8.5.0 (Debian apt, headless, in a Daytona sandbox; 830 MB of the 3.0 GB disk, sandbox deleted afterwards), `ebook-meta` and `ebook-convert`, run on `qa/sample-pro.epub` and `qa/sample-free.epub` (made by the 0.1.2 code, which has the same export code as the staged build).
+- Pro sample: Calibre reads title "My Book", author "A. Writer", publisher "P", comments "D", language eng (from en-GB), and extracts the declared cover image (the fixture cover is a 1x1 px PNG, so the cover page renders as a flat colour block; a real cover image was not tried here). Converting to PDF and rendering page 1-2: the cover page is first, then the content.
+- Free sample: title "Field Notes", author "Unknown" (the free tier writes no author), language eng. No cover declared, so Calibre generated its own.
+- Rendered content (PDF page, viewed): headings, bold/italic/code/mark, nested list, task boxes, callout, quote, table, code block, image and footnote with back-link all display correctly.
+- Limits: Calibre only. Not tried in Kindle, Kobo, Apple Books or other apps. Custom CSS from the Pro setting was not part of these samples (sample used the default stylesheet), so custom-CSS rendering in a reader is still unchecked.
