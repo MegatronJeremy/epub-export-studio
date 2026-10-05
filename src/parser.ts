@@ -6,6 +6,7 @@ export function parseMarkdown(source: string): Block[] {
   let text = source.replace(/\r\n?/g, "\n").replace(/\t/g, "    ");
   text = text.replace(/^---\n[\s\S]*?\n---[ \t]*(\n|$)/, ""); // frontmatter
   text = text.replace(/%%[\s\S]*?%%/g, ""); // Obsidian comments
+  text = text.replace(/<!--[\s\S]*?-->/g, ""); // HTML comments (hidden in Obsidian reading view)
   return parseBlocks(text.split("\n"));
 }
 
@@ -69,6 +70,12 @@ export function parseBlocks(lines: string[]): Block[] {
       continue;
     }
 
+    if (i + 1 < lines.length && /^ {0,3}(=+|-+)\s*$/.test(lines[i + 1]) && !startsBlock(lines, i) && !/^ {0,3}(-|=)/.test(line)) {
+      blocks.push({ t: "heading", level: lines[i + 1].trim().startsWith("=") ? 1 : 2, content: parseInline(line.trim()) });
+      i += 2;
+      continue;
+    }
+
     if (HR.test(line)) {
       blocks.push({ t: "hr" });
       i++;
@@ -120,9 +127,9 @@ export function parseBlocks(lines: string[]): Block[] {
           if (!stack.length || indent > stack[stack.length - 1]) stack.push(indent);
           let content = m[3];
           let checked: boolean | undefined;
-          const task = content.match(/^\[([ xX])\]\s+(.*)$/);
+          const task = content.match(/^\[([ xX\/\-])\]\s+(.*)$/);
           if (task) {
-            checked = task[1] !== " ";
+            checked = task[1] === "x" || task[1] === "X";
             content = task[2];
           }
           items.push({ level: Math.min(stack.length - 1, 8), ordered: /\d/.test(m[2]), checked, content: parseInline(content) });
