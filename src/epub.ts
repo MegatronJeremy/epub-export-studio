@@ -55,7 +55,13 @@ export function esc(s: string): string {
 
 /** Strip characters XML 1.0 forbids (control chars), which would make the whole book invalid. */
 function xmlSafe(s: string): string {
-  return s.replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F￾￿]/g, "");
+  let out = "";
+  for (const ch of s) {
+    const c = ch.codePointAt(0) as number;
+    const bad = (c < 0x20 && c !== 0x09 && c !== 0x0a && c !== 0x0d) || c === 0xfffe || c === 0xffff;
+    if (!bad) out += ch;
+  }
+  return out;
 }
 
 interface Img {
@@ -191,7 +197,7 @@ class ChapterRenderer {
           if (!num) {
             num = this.noteIndex.size + 1;
             this.noteIndex.set(n.id, num);
-            const clean = parseInline(body).map((m) => (m.t === "fnref" ? ({ t: "text", text: `[^${m.id}]` } as Inline) : m));
+            const clean = parseInline(body).map((m) => (m.t === "fnref" ? { t: "text" as const, text: `[^${m.id}]` } : m));
             this.notes.push(await this.inlines(clean));
           }
           out += `<a epub:type="noteref" id="c${this.n}-r${num}" href="#c${this.n}-n${num}"><sup>${num}</sup></a>`;

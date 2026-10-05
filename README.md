@@ -51,8 +51,8 @@ You do not have to buy anything to get an EPUB out of Obsidian. Other free commu
 
 ## Known limits (honest status)
 
-- Tested: automated tests (see TESTED.md) and the EPUB validator epubcheck 5.1.0 on sample books made by the code (free and Pro; no errors, no warnings).
-- **Tested in the real Obsidian app (1.13.7, Linux) on 2026-10-04, see TESTED.md. Not tested in e-readers or reading apps** (Kindle, Kobo, Apple Books, Calibre), nor on Windows, macOS or mobile. Passing the validator does not guarantee how every reader displays the book.
+- Tested: automated tests (see TESTED.md) and the EPUB validator epubcheck 5.1.0 on sample books made by the code (free and Pro, on version 0.1.0; no errors, no warnings).
+- **Tested in the real Obsidian app (1.13.7, Linux) on 2026-10-04 on version 0.1.0; version 0.1.1 (two lint fixes, no behaviour change) was not re-run in Obsidian, see TESTED.md. Not tested in e-readers or reading apps** (Kindle, Kobo, Apple Books, Calibre), nor on Windows, macOS or mobile. Passing the validator does not guarantee how every reader displays the book.
 - Math, Mermaid, embedded notes (`![[note]]`), PDFs and audio are not exported.
 - Page-level design (fonts, drop caps, etc.) is up to the reader app and your CSS; the default stylesheet is plain.
 - A valid licence key has not been verified against the live Gumroad service yet; the first buyers are that test.
